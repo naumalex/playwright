@@ -10,8 +10,6 @@ export class ContextMenu {
     }
 
     async select(optionToSelect: string) {
-        /*let selector = locatorTemplateFormat(
-            'this.page.getByText("{menuOption}", { exact: true })', { menuOption: optionToSelect });*/
         let locator = this.page.getByText(optionToSelect, { exact: true });
         await locator.click();
     }

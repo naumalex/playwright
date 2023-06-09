@@ -67,7 +67,6 @@ export type Patient = {
         return this;
     }
     build(): Patient {
-      console.log(this._patient);
         return this._patient;
     }
   }
@@ -82,13 +81,6 @@ export const patientData = [(new PatientBuilder)
     .gender('M')
     .build()
 ]
-/*{
-    lastName: 'Gump',
-    firstName: 'Forrest Alexander',
-    fullName: (function () { return this.lastName + this.firstName })(),
-    dob: '1961-11-7',
-    age: (function () { return getAge(this.dob) })(),
-    gender: 'M'
-}*/
+
 
 

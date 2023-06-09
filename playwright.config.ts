@@ -1,6 +1,4 @@
 import { defineConfig, devices } from '@playwright/test';
-import path from 'path';
-export const STORAGE_STATE = path.join(__dirname, 'user.json');
 /**
  * Read environment variables from file.
  * https://github.com/motdotla/dotenv
@@ -35,13 +33,13 @@ export default defineConfig({
 
   /* Configure projects for major browsers */
   projects: [
-    { name: 'setup', testMatch: /.*auth\\auth\.setup\.ts/ },
+  /*  { name: 'setup', testMatch: /.*auth\\auth\.setup\.ts/ },
     {
       name: 'test', 
       testMatch: /test\.ts/,
       use: { storageState: 'user.json' },
       dependencies: ['setup']
-    },
+    },*/
 
     {
       name: 'chromium',

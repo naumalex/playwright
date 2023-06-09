@@ -22,7 +22,6 @@ export class PatientsPage extends HomePage {
   }
 
   async clickPatientLink(patientFullName: string): Promise<void> {
-    //await this.page.getByText(patientFullName).click();
     await new PatientsListItem(this.page, patientFullName).click();
   }
 

@@ -1,7 +1,5 @@
-export const getAge = function (/*DOBYear: number, DOBMonth: number, DOBDay: number*/DOB: string) {
+export const getAge = function (DOB: string) {
     const today = new Date();
-    
-    //const birthDate = new Date(DOBYear, DOBMonth - 1, DOBDay);
     const birthDate = new Date(Date.parse(DOB));
     let age = today.getFullYear() - birthDate.getFullYear();
     let month = today.getMonth() - birthDate.getMonth();

@@ -33,20 +33,18 @@ export class PatientsListItem {
 
     async get() {
         let fullName = await this.page.locator(
-            locatorTemplateFormat(this.LOCATOR_TEMPLATE + '//span[@class = "display-name"]',
+            locatorTemplateFormat(this.LOCATOR_TEMPLATE + 
+                '//span[@class = "display-name"]',
                 { item: this.itemText })).first().textContent();
         let demographicsData = await this.page.locator(
-            locatorTemplateFormat(this.LOCATOR_TEMPLATE + '//span[@class = "demographic-info"]',
+            locatorTemplateFormat(this.LOCATOR_TEMPLATE + 
+                '//span[@class = "demographic-info"]',
                 { item: this.itemText })).first().textContent();
 
         let patientAge = demographicsData?.split(';')[0].trim();
         let gender = demographicsData?.split(';')[1].trim();
-
-       /* return {
-            fullName: fullName, age: demographicsData?.split(';')[0].trim(),
-            gender: demographicsData?.split(';')[1].trim()
-        };*/
-        return new PatientBuilder().fullName(fullName!).age(patientAge!).gender(gender!).build();
+        return new PatientBuilder().fullName(fullName!)
+        .age(patientAge!).gender(gender!).build();
     }
 }
 
