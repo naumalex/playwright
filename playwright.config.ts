@@ -1,5 +1,6 @@
 import { defineConfig, devices } from '@playwright/test';
-
+import path from 'path';
+export const STORAGE_STATE = path.join(__dirname, 'user.json');
 /**
  * Read environment variables from file.
  * https://github.com/motdotla/dotenv
@@ -10,6 +11,8 @@ import { defineConfig, devices } from '@playwright/test';
  * See https://playwright.dev/docs/test-configuration.
  */
 export default defineConfig({
+  timeout: 200000,
+  expect: { timeout: 10000 }, 
   testDir: './src/tests',
   /* Run tests in files in parallel */
   fullyParallel: true,
@@ -24,7 +27,7 @@ export default defineConfig({
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Base URL to use in actions like `await page.goto('/')`. */
-    // baseURL: 'http://127.0.0.1:3000',
+    baseURL: 'https://utility2.intrahealth.com',
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
@@ -32,19 +35,31 @@ export default defineConfig({
 
   /* Configure projects for major browsers */
   projects: [
+    { name: 'setup', testMatch: /.*auth\\auth\.setup\.ts/ },
+    {
+      name: 'test', 
+      testMatch: /test\.ts/,
+      use: { storageState: 'user.json' },
+      dependencies: ['setup']
+    },
+
     {
       name: 'chromium',
-      use: { ...devices['Desktop Chrome'] },
+      use: { ...devices['Desktop Chrome'],
+      /*storageState: STORAGE_STATE, */},
+     // dependencies: ['setup'],
     },
 
     {
       name: 'firefox',
       use: { ...devices['Desktop Firefox'] },
+      //dependencies: ['setup'],
     },
 
     {
       name: 'webkit',
       use: { ...devices['Desktop Safari'] },
+      //dependencies: ['setup'],
     },
 
     /* Test against mobile viewports. */

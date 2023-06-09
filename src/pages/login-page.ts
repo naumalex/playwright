@@ -3,7 +3,7 @@ import { locatorTemplateFormat } from '../utils/locator';
 import { BasePage } from './base-page';
 
 export class LoginPage extends BasePage {
-    readonly URL = 'https://utility2.intrahealth.com/1004/hcare/#/login';
+    readonly URL = '/1004/hcare/#/login';
     readonly INPUT_XPATH_LOCATOR_TEMPLATE =
         'xpath=//span[text() = {label}]/../following-sibling::div/input';
     /* readonly PASSWORD_INPUT_XPATH_LOCATOR = 

@@ -7,7 +7,7 @@ export class BasePage {
     }
   
     async open(url: string): Promise<void> {
-        await this.page.goto(url);
+        await this.page.goto(url, { timeout: 200_000 });
     }
   
     async reload(): Promise<void> {
